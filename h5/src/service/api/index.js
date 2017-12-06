@@ -1353,6 +1353,17 @@ var apiObj = {
       })
     }
   },
+  createSelectorQuery: function (e) {
+    // 返回一个SelectorQuery对象实例
+    var t = null
+    if (e && e.page) {
+      t = e.page.__wxWebViewId__
+    } else {
+      var n = getCurrentPages()
+      t = n[n.length - 1].__wxWebviewId__
+    }
+    return new utils.wxQuerySelector(t)
+  },
   getExtConfigSync: function () {
     if (!__wxConfig__.ext) return {}
     try {

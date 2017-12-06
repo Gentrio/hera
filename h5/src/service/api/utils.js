@@ -674,6 +674,14 @@ var wxQuerySelector = function(){
         this._queueCb = [];
     }
     return config(init,[{
+        key: "in", value: function (e) {
+          return null === this._webviewId 
+          ? this._webviewId = e.__wxWebviewId_ 
+          : this._webviewId !== e.__wxWebviewId__ 
+          ? console.error("A single SelectorQuery could not work in components in different pages. A SelectorQuery#in call has been ignored and the page root is used as the current component.")
+          : this
+        }
+    }, {
         key: "select", value: function (e) {
             return new setSelect(this, e, !0)
         }
